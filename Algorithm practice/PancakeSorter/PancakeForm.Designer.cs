@@ -1,6 +1,6 @@
 ﻿namespace PancakeSorter
 {
-    partial class Form1
+    partial class PancakeForm
     {
         /// <summary>
         /// Required designer variable.

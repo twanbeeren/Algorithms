@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace PancakeSorter
 {
-    public partial class Form1 : Form
+    public partial class PancakeForm : Form
     {
         List<Pancake> pancakelist = new List<Pancake>();
-        public Form1()
+        public PancakeForm()
         {
             InitializeComponent();
         }
@@ -25,11 +25,8 @@ namespace PancakeSorter
             MakePancakes();
             OrderPancakes();
 
-            //following foreach loop could get an own method, but for this time chose otherwise because it is a short method
-            foreach (Pancake pancake in pancakelist)
-            {
-                listBoxpancakes.Items.Add(pancake.ToString());
-            }
+            listBoxpancakes.Items.AddRange(pancakelist.ToArray());
+            
         }
 
         private void MakePancakes()
