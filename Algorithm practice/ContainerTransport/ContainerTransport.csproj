@@ -48,6 +48,7 @@
     <Compile Include="Classes\Ship.cs" />
     <Compile Include="Classes\Container.cs" />
     <Compile Include="Classes\Service.cs" />
+    <Compile Include="Classes\Stack.cs" />
     <Compile Include="Enums\ContainerType.cs" />
     <Compile Include="TransportForm.cs">
       <SubType>Form</SubType>

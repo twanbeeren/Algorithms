@@ -9,5 +9,7 @@ namespace ContainerTransport
     public class Service
     {
         public List<Container> totalcontainers = new List<Container>();
+        private int weightleft = 0;
+        private int weightright = 0;
     }
 }
