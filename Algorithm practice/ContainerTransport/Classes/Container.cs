@@ -9,27 +9,29 @@ namespace ContainerTransport
     public class Container
     {
         int id;
-        int LoadCapacity = 120000;
-        int MaxWeight = 30000;
-        int StandardWeight = 4000;
-        int CargoWeight;
-        ContainerType Sort;
+        int loadCapacity = 120000;
+        int maxWeight = 30000;
+        int standardWeight = 4000;
+        int cargoWeight;
+        ContainerType sort;
+        bool placed = false;
         
 
         public Container(ContainerType type)
         {
             CargoWeight = randomWeight();
-            Sort = type;
+            sort = type;
         }
 
-        public int loadCapacity { get => LoadCapacity; set => LoadCapacity = value; }
-        public int cargoWeight { get => CargoWeight; set => CargoWeight = value; }
-        public ContainerType sort { get => Sort; set => Sort = value; }
+        public int LoadCapacity { get => loadCapacity; set => loadCapacity = value; }
+        public int CargoWeight { get => cargoWeight; set => cargoWeight = value; }
+        public ContainerType Sort { get => sort; set => sort = value; }
+        public bool Placed { get => placed; set => placed = value; }
 
         public int randomWeight()
         {
             Random rnd = new Random();
-            return rnd.Next(StandardWeight, MaxWeight);
+            return rnd.Next(standardWeight, maxWeight);
         }
 
         public override string ToString()

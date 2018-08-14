@@ -9,22 +9,27 @@ namespace ContainerTransport
     public class Stack
     {
         List<Container> StackContainers = new List<Container>();
-        
-        public List<Container> fillStack(Container container)
+        bool placed = false;
+
+        public bool Placed { get => placed; set => placed = value; }
+
+        public List<Container> fillStack(IEnumerable<Container> containers)
         {
-            //Can only fill one container per stack atm. Need to give the parameter an IEnumerable<Container>.
-            if (checkWeight(container) && checkValuableContainer())
+            foreach(Container container in containers)
             {
-                StackContainers.Add(container);
+                if (checkWeight(container) && checkValuableContainer() && container.Placed)
+                {
+                    StackContainers.Add(container);
+                }
             }
             return StackContainers;
         }
 
         public bool checkWeight(Container container)
         {
-            int maxweight = StackContainers.Sum(x => x.cargoWeight);
+            int stackweight = StackContainers.Sum(x => x.CargoWeight);
 
-            if(maxweight + container.cargoWeight < container.loadCapacity)
+            if(stackweight + container.CargoWeight < container.LoadCapacity)
             {
                 return true;
             }
@@ -37,7 +42,7 @@ namespace ContainerTransport
         public bool checkValuableContainer()
         {
             var item = StackContainers[StackContainers.Count - 1];
-            if(item.sort != ContainerType.Valuable)
+            if(item.Sort != ContainerType.Valuable)
             {
                 return true;
             }
@@ -46,5 +51,7 @@ namespace ContainerTransport
                 return false;
             }
         }
+
+        
     }
 }
