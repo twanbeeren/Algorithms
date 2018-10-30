@@ -20,7 +20,7 @@ namespace PancakeSorter
         private int RandomSize()
         {
             Random random = new Random();
-            return random.Next(11);
+            return random.Next(1, 11);
         }
 
         public override string ToString()
