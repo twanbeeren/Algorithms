@@ -8,15 +8,12 @@ namespace PancakeSorter
 {
     public class Pancake
     {
-        private int size;
-
+        public int Size { get; private set; }
         public Pancake()
         {
-            size = RandomSize();
+            Size = RandomSize();
         }
-
-        public int Size { get => size;}
-
+        
         private int RandomSize()
         {
             Random random = new Random();

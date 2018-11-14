@@ -39,5 +39,36 @@ namespace CircusTrain
             }
             return animals;
         }
+
+        public void AddAnimalToWagon(Wagon wagon, Animal animal)
+        {
+            wagon.Animals.Add(animal);
+        }
+
+        public Wagon FillWagon(Wagon wagon, IEnumerable<Animal> animals)
+        {
+            if (!wagon.HasBigCarnivore())
+            {
+                foreach(Animal animal in animals)
+                {
+                    if(animal.Placed == false)
+                    {
+                        if (wagon.AnimalFits(animal) && !animal.EatsAnAnimal(wagon))
+                        {
+                            animal.Placed = true;
+                            AddAnimalToWagon(wagon, animal);
+                        }
+                    }
+                        
+                }
+            }
+            return wagon;
+        }
+
+        public Train FillTrain(Train train, IEnumerable<Wagon> wagons)
+        {
+
+            return train;
+        }
     }
 }

@@ -9,19 +9,33 @@ namespace CircusTrain
 {
     internal class Animal
     {
+        public bool Placed { get; set; }
         public Diet Diet { get; private set; }
 
         public Magnitude Magnitude { get; private set; }
 
         public Animal(Diet diet, Magnitude magnitude)
         {
+            Placed = false;
             Diet = diet;
             Magnitude = magnitude;
         }
-
         public override string ToString()
         {
             return Diet + "," + Magnitude;
         }
+
+        public bool EatsAnAnimal(Wagon wagon)
+        {
+            foreach(Animal animal in wagon.Animals)
+            {
+                if (this.Diet == Diet.carnivore && this.Magnitude >= animal.Magnitude)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

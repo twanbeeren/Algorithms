@@ -46,7 +46,6 @@ namespace CircusTrain
         private void buttonRandomize_Click(object sender, EventArgs e)
         {
             train.Animals = services.MakeRandomAnimals();
-
             listBoxAnimals.Items.Clear();
             foreach (Animal animal in train.Animals)
             {
