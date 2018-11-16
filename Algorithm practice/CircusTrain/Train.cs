@@ -8,8 +8,11 @@ namespace CircusTrain
 {
     internal class Train
     {
+        public List<Wagon> Wagons { get; set; }
 
-        private List<Animal> animals;
-        internal List<Animal> Animals { get => animals; set => animals = value; }
+        public Train()
+        {
+            Wagons = new List<Wagon>();
+        }
     }
 }

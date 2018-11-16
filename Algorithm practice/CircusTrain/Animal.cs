@@ -37,5 +37,17 @@ namespace CircusTrain
             return false;
         }
 
+        public bool GetsEatenByCarnivore(Wagon wagon)
+        {
+            foreach (Animal animal in wagon.Animals)
+            {
+                if (animal.Diet == Diet.carnivore && this.Magnitude <= animal.Magnitude)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
     }
 }

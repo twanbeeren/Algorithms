@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBoxAddAnimal = new System.Windows.Forms.GroupBox();
-            this.labelDiet = new System.Windows.Forms.Label();
-            this.comboBoxDiet = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBoxSize = new System.Windows.Forms.ComboBox();
-            this.buttonAddAnimal = new System.Windows.Forms.Button();
-            this.listBoxAnimals = new System.Windows.Forms.ListBox();
             this.buttonRandomize = new System.Windows.Forms.Button();
+            this.buttonAddAnimal = new System.Windows.Forms.Button();
+            this.comboBoxSize = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.comboBoxDiet = new System.Windows.Forms.ComboBox();
+            this.labelDiet = new System.Windows.Forms.Label();
+            this.listBoxAnimals = new System.Windows.Forms.ListBox();
             this.buttonCalculate = new System.Windows.Forms.Button();
-            this.flowLayoutPanelWagons = new System.Windows.Forms.FlowLayoutPanel();
+            this.flpWagons = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonClear = new System.Windows.Forms.Button();
             this.groupBoxAddAnimal.SuspendLayout();
             this.SuspendLayout();
@@ -57,34 +57,25 @@
             this.groupBoxAddAnimal.TabStop = false;
             this.groupBoxAddAnimal.Text = "Add animal";
             // 
-            // labelDiet
+            // buttonRandomize
             // 
-            this.labelDiet.AutoSize = true;
-            this.labelDiet.Location = new System.Drawing.Point(6, 38);
-            this.labelDiet.Name = "labelDiet";
-            this.labelDiet.Size = new System.Drawing.Size(33, 17);
-            this.labelDiet.TabIndex = 0;
-            this.labelDiet.Text = "Diet";
+            this.buttonRandomize.Location = new System.Drawing.Point(169, 124);
+            this.buttonRandomize.Name = "buttonRandomize";
+            this.buttonRandomize.Size = new System.Drawing.Size(92, 34);
+            this.buttonRandomize.TabIndex = 5;
+            this.buttonRandomize.Text = "Randomize";
+            this.buttonRandomize.UseVisualStyleBackColor = true;
+            this.buttonRandomize.Click += new System.EventHandler(this.buttonRandomize_Click);
             // 
-            // comboBoxDiet
+            // buttonAddAnimal
             // 
-            this.comboBoxDiet.FormattingEnabled = true;
-            this.comboBoxDiet.Items.AddRange(new object[] {
-            "herbivore",
-            "carnivore"});
-            this.comboBoxDiet.Location = new System.Drawing.Point(83, 35);
-            this.comboBoxDiet.Name = "comboBoxDiet";
-            this.comboBoxDiet.Size = new System.Drawing.Size(129, 24);
-            this.comboBoxDiet.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 17);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Size";
+            this.buttonAddAnimal.Location = new System.Drawing.Point(83, 124);
+            this.buttonAddAnimal.Name = "buttonAddAnimal";
+            this.buttonAddAnimal.Size = new System.Drawing.Size(79, 34);
+            this.buttonAddAnimal.TabIndex = 4;
+            this.buttonAddAnimal.Text = "Add";
+            this.buttonAddAnimal.UseVisualStyleBackColor = true;
+            this.buttonAddAnimal.Click += new System.EventHandler(this.buttonAddAnimal_Click);
             // 
             // comboBoxSize
             // 
@@ -98,15 +89,34 @@
             this.comboBoxSize.Size = new System.Drawing.Size(129, 24);
             this.comboBoxSize.TabIndex = 3;
             // 
-            // buttonAddAnimal
+            // label1
             // 
-            this.buttonAddAnimal.Location = new System.Drawing.Point(83, 124);
-            this.buttonAddAnimal.Name = "buttonAddAnimal";
-            this.buttonAddAnimal.Size = new System.Drawing.Size(79, 34);
-            this.buttonAddAnimal.TabIndex = 4;
-            this.buttonAddAnimal.Text = "Add";
-            this.buttonAddAnimal.UseVisualStyleBackColor = true;
-            this.buttonAddAnimal.Click += new System.EventHandler(this.buttonAddAnimal_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 17);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Size";
+            // 
+            // comboBoxDiet
+            // 
+            this.comboBoxDiet.FormattingEnabled = true;
+            this.comboBoxDiet.Items.AddRange(new object[] {
+            "herbivore",
+            "carnivore"});
+            this.comboBoxDiet.Location = new System.Drawing.Point(83, 35);
+            this.comboBoxDiet.Name = "comboBoxDiet";
+            this.comboBoxDiet.Size = new System.Drawing.Size(129, 24);
+            this.comboBoxDiet.TabIndex = 1;
+            // 
+            // labelDiet
+            // 
+            this.labelDiet.AutoSize = true;
+            this.labelDiet.Location = new System.Drawing.Point(6, 38);
+            this.labelDiet.Name = "labelDiet";
+            this.labelDiet.Size = new System.Drawing.Size(33, 17);
+            this.labelDiet.TabIndex = 0;
+            this.labelDiet.Text = "Diet";
             // 
             // listBoxAnimals
             // 
@@ -116,16 +126,6 @@
             this.listBoxAnimals.Name = "listBoxAnimals";
             this.listBoxAnimals.Size = new System.Drawing.Size(185, 260);
             this.listBoxAnimals.TabIndex = 1;
-            // 
-            // buttonRandomize
-            // 
-            this.buttonRandomize.Location = new System.Drawing.Point(169, 124);
-            this.buttonRandomize.Name = "buttonRandomize";
-            this.buttonRandomize.Size = new System.Drawing.Size(92, 34);
-            this.buttonRandomize.TabIndex = 5;
-            this.buttonRandomize.Text = "Randomize";
-            this.buttonRandomize.UseVisualStyleBackColor = true;
-            this.buttonRandomize.Click += new System.EventHandler(this.buttonRandomize_Click);
             // 
             // buttonCalculate
             // 
@@ -137,12 +137,12 @@
             this.buttonCalculate.UseVisualStyleBackColor = true;
             this.buttonCalculate.Click += new System.EventHandler(this.buttonCalculate_Click);
             // 
-            // flowLayoutPanelWagons
+            // flpWagons
             // 
-            this.flowLayoutPanelWagons.Location = new System.Drawing.Point(312, 13);
-            this.flowLayoutPanelWagons.Name = "flowLayoutPanelWagons";
-            this.flowLayoutPanelWagons.Size = new System.Drawing.Size(735, 453);
-            this.flowLayoutPanelWagons.TabIndex = 3;
+            this.flpWagons.Location = new System.Drawing.Point(312, 13);
+            this.flpWagons.Name = "flpWagons";
+            this.flpWagons.Size = new System.Drawing.Size(735, 453);
+            this.flpWagons.TabIndex = 3;
             // 
             // buttonClear
             // 
@@ -160,7 +160,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1059, 478);
             this.Controls.Add(this.buttonClear);
-            this.Controls.Add(this.flowLayoutPanelWagons);
+            this.Controls.Add(this.flpWagons);
             this.Controls.Add(this.buttonCalculate);
             this.Controls.Add(this.listBoxAnimals);
             this.Controls.Add(this.groupBoxAddAnimal);
@@ -184,7 +184,7 @@
         private System.Windows.Forms.Button buttonAddAnimal;
         private System.Windows.Forms.ListBox listBoxAnimals;
         private System.Windows.Forms.Button buttonCalculate;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelWagons;
+        private System.Windows.Forms.FlowLayoutPanel flpWagons;
         private System.Windows.Forms.Button buttonClear;
     }
 }

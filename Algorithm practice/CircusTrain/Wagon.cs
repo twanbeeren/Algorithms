@@ -14,6 +14,7 @@ namespace CircusTrain
 
         public Wagon()
         {
+            Animals = new List<Animal>();
             Points = 0;
             MaxPoints = 10;
         }

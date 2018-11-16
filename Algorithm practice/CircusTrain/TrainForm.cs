@@ -15,6 +15,7 @@ namespace CircusTrain
     {
         Train train;
         Services services;
+        Creator creator;
         public TrainForm()
         {
             InitializeComponent();
@@ -24,6 +25,7 @@ namespace CircusTrain
         {
             train = new Train();
             services = new Services();
+            creator = new Creator();
         }
 
         private void buttonAddAnimal_Click(object sender, EventArgs e)
@@ -32,11 +34,11 @@ namespace CircusTrain
             {
                 Diet diet = (Diet)Enum.Parse(typeof(Diet), comboBoxDiet.Text);
                 Magnitude magnitude = (Magnitude)Enum.Parse(typeof(Magnitude), comboBoxSize.Text);
-                Animal animal = services.MakeAnimal(diet, magnitude);
-                train.Animals.Add(animal);
+                Animal animal = creator.MakeAnimal(diet, magnitude);
+                services.Animals.Add(animal);
 
                 listBoxAnimals.Items.Clear();
-                foreach (Animal _animal in train.Animals)
+                foreach (Animal _animal in services.Animals)
                 {
                     listBoxAnimals.Items.Add(_animal);
                 }
@@ -45,9 +47,9 @@ namespace CircusTrain
 
         private void buttonRandomize_Click(object sender, EventArgs e)
         {
-            train.Animals = services.MakeRandomAnimals();
+            services.Animals = creator.MakeRandomAnimals();
             listBoxAnimals.Items.Clear();
-            foreach (Animal animal in train.Animals)
+            foreach (Animal animal in services.Animals)
             {
                 listBoxAnimals.Items.Add(animal);
             }
@@ -55,15 +57,37 @@ namespace CircusTrain
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            train.Animals.Clear();
+            services.Animals.Clear();
+            train.Wagons.Clear();
             listBoxAnimals.Items.Clear();
-
+            flpWagons.Controls.Clear();
         }
+        private void CreateListBox(Wagon wagon)
+        {
+            ListBox listBox = new ListBox();
+            listBox.Left = 350;
+            listBox.Top = 100;
+            listBox.Height = 150;
+            listBox.Width = 100;
+            flpWagons.Controls.Add(listBox);
+            foreach (Animal animal in wagon.Animals)
+            {
+                listBox.Items.Add(animal.ToString());
+            }
+        }
+
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
+            List<Wagon> wagons = new List<Wagon>();
 
+            wagons.AddRange(services.FillWagons());
+            services.FillTrain(train, wagons);
+
+            foreach(Wagon _wagon in train.Wagons)
+            {
+                CreateListBox(_wagon);
+            }
         }
-
         
     }
 }
