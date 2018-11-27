@@ -8,8 +8,8 @@ namespace CircusTrain.Enums
 {
     public enum Magnitude
     {
-        small = 1,
-        medium = 3,
-        large = 5
+        Small = 1,
+        Medium = 3,
+        Large = 5
     }
 }

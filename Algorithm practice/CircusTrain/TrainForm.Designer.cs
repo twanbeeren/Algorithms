@@ -81,9 +81,9 @@
             // 
             this.comboBoxSize.FormattingEnabled = true;
             this.comboBoxSize.Items.AddRange(new object[] {
-            "small",
-            "medium",
-            "large"});
+            "Small",
+            "Medium",
+            "Large"});
             this.comboBoxSize.Location = new System.Drawing.Point(83, 79);
             this.comboBoxSize.Name = "comboBoxSize";
             this.comboBoxSize.Size = new System.Drawing.Size(129, 24);
@@ -102,8 +102,8 @@
             // 
             this.comboBoxDiet.FormattingEnabled = true;
             this.comboBoxDiet.Items.AddRange(new object[] {
-            "herbivore",
-            "carnivore"});
+            "Herbivore",
+            "Carnivore"});
             this.comboBoxDiet.Location = new System.Drawing.Point(83, 35);
             this.comboBoxDiet.Name = "comboBoxDiet";
             this.comboBoxDiet.Size = new System.Drawing.Size(129, 24);
@@ -139,9 +139,10 @@
             // 
             // flpWagons
             // 
+            this.flpWagons.AutoScroll = true;
             this.flpWagons.Location = new System.Drawing.Point(312, 13);
             this.flpWagons.Name = "flpWagons";
-            this.flpWagons.Size = new System.Drawing.Size(735, 453);
+            this.flpWagons.Size = new System.Drawing.Size(735, 519);
             this.flpWagons.TabIndex = 3;
             // 
             // buttonClear
@@ -158,7 +159,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1059, 478);
+            this.ClientSize = new System.Drawing.Size(1059, 544);
             this.Controls.Add(this.buttonClear);
             this.Controls.Add(this.flpWagons);
             this.Controls.Add(this.buttonCalculate);

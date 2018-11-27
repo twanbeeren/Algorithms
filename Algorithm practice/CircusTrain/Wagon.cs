@@ -9,7 +9,7 @@ namespace CircusTrain
     internal class Wagon
     {
         public List<Animal> Animals { get; set; }
-        public int Points { get; set; }
+        public int Points { get; private set; }
         public int MaxPoints { get; private set; }
 
         public Wagon()
@@ -18,10 +18,17 @@ namespace CircusTrain
             Points = 0;
             MaxPoints = 10;
         }
-        
+
+        public void AddAnimal(Animal animal)
+        {
+            animal.Placed = true;
+            Points += (int)animal.Magnitude;
+            Animals.Add(animal);
+        }
+
         public bool HasBigCarnivore()
         {
-            if(Animals.Any(item => item.Magnitude == Enums.Magnitude.large && item.Diet == Enums.Diet.carnivore))
+            if(Animals.Any(item => item.Magnitude == Enums.Magnitude.Large && item.Diet == Enums.Diet.Carnivore))
             {
                 return true;
             }

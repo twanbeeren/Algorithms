@@ -8,7 +8,7 @@ namespace CircusTrain.Enums
 {
     public enum Diet
     {
-        carnivore,
-        herbivore
+        Carnivore,
+        Herbivore
     }
 }

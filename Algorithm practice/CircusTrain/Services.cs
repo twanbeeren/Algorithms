@@ -11,23 +11,16 @@ namespace CircusTrain
     {
         public List<Animal> Animals = new List<Animal>();
         
-        private void AddAnimalToWagon(Wagon wagon, Animal animal)
-        {
-            animal.Placed = true;
-            wagon.Points += (int)animal.Magnitude;
-            wagon.Animals.Add(animal);
-        }
-
         public List<Wagon> PlaceLargeCarnivores()
         {
             List<Wagon> wagons = new List<Wagon>();
             Wagon wagon;
             foreach(Animal animal in Animals)
             {
-                if(animal.Diet == Diet.carnivore && animal.Magnitude == Magnitude.large)
+                if( animal.Diet == Diet.Carnivore && animal.Magnitude == Magnitude.Large)
                 {
                     wagon = new Wagon();
-                    AddAnimalToWagon(wagon, animal);
+                    wagon.AddAnimal(animal);
                     wagons.Add(wagon);
                 }
             }
@@ -40,10 +33,10 @@ namespace CircusTrain
             Wagon wagon;
             foreach (Animal animal in Animals)
             {
-                if (animal.Diet == Diet.carnivore)
+                if (animal.Placed == false && animal.Diet == Diet.Carnivore)
                 {
                     wagon = new Wagon();
-                    AddAnimalToWagon(wagon, animal);
+                    wagon.AddAnimal(animal);
                     wagons.Add(wagon);
                 }
             }
@@ -52,35 +45,39 @@ namespace CircusTrain
 
         public List<Wagon> PlaceHerbivores(List<Wagon> wagons)
         {
-            foreach(Wagon wagon in wagons)
-            {
-                foreach (Animal animal in Animals)
+            bool cont = true;
+            do {
+                foreach (Wagon wagon in wagons)
                 {
-                    if (animal.Placed == false && wagon.Points < wagon.MaxPoints)
+                    foreach (Animal animal in Animals)
                     {
-                        if (wagon.AnimalFits(animal) && !animal.GetsEatenByCarnivore(wagon))
+                        if (animal.Placed == false && wagon.Points < wagon.MaxPoints)
                         {
-                            AddAnimalToWagon(wagon, animal);
+                            if (wagon.AnimalFits(animal) && !animal.GetsEatenByCarnivore(wagon))
+                            {
+                                wagon.AddAnimal(animal);
+                            }
                         }
                     }
                 }
-            }
+
+                cont = Animals.Any(item => item.Placed == false);
+                if (cont)
+                {
+                    Wagon newwagon = new Wagon();
+                    wagons.Add(newwagon);
+                }
+            } while (cont);
+
             return wagons;
         }
         
-        public List<Wagon> FillWagons()
+        public Train FillTrain(Train train)
         {
-            List<Wagon> wagons = new List<Wagon>();
-            Wagon wagon = new Wagon();
+            train.Wagons.AddRange(PlaceLargeCarnivores());
+            List<Wagon> carnivoreWagons = PlaceCarnivores();
 
-            wagons.AddRange(PlaceLargeCarnivores());
-            wagons.AddRange(PlaceHerbivores(PlaceCarnivores()));
-            
-            return wagons;
-        }
-        public Train FillTrain(Train train, IEnumerable<Wagon> wagons)
-        {
-            train.Wagons.AddRange(wagons);
+            train.Wagons.AddRange(PlaceHerbivores(carnivoreWagons));
             return train;
         }
     }

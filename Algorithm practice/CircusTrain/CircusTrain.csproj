@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animal.cs" />
-    <Compile Include="Creator.cs" />
+    <Compile Include="AnimalFactory.cs" />
     <Compile Include="Enums\Diet.cs" />
     <Compile Include="Enums\Magnitude.cs" />
     <Compile Include="Services.cs" />

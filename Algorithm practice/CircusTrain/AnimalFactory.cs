@@ -7,15 +7,15 @@ using System.Threading.Tasks;
 
 namespace CircusTrain
 {
-    internal class Creator
+    internal static class AnimalFactory
     {
-        public Animal MakeAnimal(Diet diet, Magnitude magnitude)
+        public static Animal MakeAnimal(Diet diet, Magnitude magnitude)
         {
             Animal animal = new Animal(diet, magnitude);
             return animal;
         }
 
-        public List<Animal> MakeRandomAnimals()
+        public static List<Animal> MakeRandomAnimals()
         {
             List<Animal> animals = new List<Animal>();
             List<Diet> diets = new List<Diet>();

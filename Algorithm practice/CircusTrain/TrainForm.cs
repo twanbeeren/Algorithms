@@ -15,7 +15,7 @@ namespace CircusTrain
     {
         Train train;
         Services services;
-        Creator creator;
+        
         public TrainForm()
         {
             InitializeComponent();
@@ -25,7 +25,6 @@ namespace CircusTrain
         {
             train = new Train();
             services = new Services();
-            creator = new Creator();
         }
 
         private void buttonAddAnimal_Click(object sender, EventArgs e)
@@ -34,8 +33,10 @@ namespace CircusTrain
             {
                 Diet diet = (Diet)Enum.Parse(typeof(Diet), comboBoxDiet.Text);
                 Magnitude magnitude = (Magnitude)Enum.Parse(typeof(Magnitude), comboBoxSize.Text);
-                Animal animal = creator.MakeAnimal(diet, magnitude);
+
+                Animal animal = AnimalFactory.MakeAnimal(diet, magnitude);
                 services.Animals.Add(animal);
+                services.Animals.OrderBy(x => x.Magnitude == Magnitude.Large);
 
                 listBoxAnimals.Items.Clear();
                 foreach (Animal _animal in services.Animals)
@@ -47,7 +48,7 @@ namespace CircusTrain
 
         private void buttonRandomize_Click(object sender, EventArgs e)
         {
-            services.Animals = creator.MakeRandomAnimals();
+            services.Animals = AnimalFactory.MakeRandomAnimals();
             listBoxAnimals.Items.Clear();
             foreach (Animal animal in services.Animals)
             {
@@ -78,10 +79,8 @@ namespace CircusTrain
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
-            List<Wagon> wagons = new List<Wagon>();
-
-            wagons.AddRange(services.FillWagons());
-            services.FillTrain(train, wagons);
+            services.Animals = services.Animals.OrderByDescending(a => (int)a.Magnitude).ToList();
+            services.FillTrain(train);
 
             foreach(Wagon _wagon in train.Wagons)
             {

@@ -30,19 +30,19 @@
         {
             this.buttonCalculate = new System.Windows.Forms.Button();
             this.groupBoxContainers = new System.Windows.Forms.GroupBox();
-            this.numericUpDownCooled = new System.Windows.Forms.NumericUpDown();
-            this.labelcooled = new System.Windows.Forms.Label();
-            this.labelvaluable = new System.Windows.Forms.Label();
-            this.numericUpDownValuable = new System.Windows.Forms.NumericUpDown();
-            this.labelnormal = new System.Windows.Forms.Label();
             this.numericUpDownNormal = new System.Windows.Forms.NumericUpDown();
+            this.labelnormal = new System.Windows.Forms.Label();
+            this.numericUpDownValuable = new System.Windows.Forms.NumericUpDown();
+            this.labelvaluable = new System.Windows.Forms.Label();
+            this.labelcooled = new System.Windows.Forms.Label();
+            this.numericUpDownCooled = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelmax_weight = new System.Windows.Forms.Label();
             this.numericUpDownMax_weight = new System.Windows.Forms.NumericUpDown();
+            this.labelmax_weight = new System.Windows.Forms.Label();
             this.groupBoxContainers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCooled)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValuable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNormal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValuable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCooled)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax_weight)).BeginInit();
             this.SuspendLayout();
@@ -72,37 +72,12 @@
             this.groupBoxContainers.TabStop = false;
             this.groupBoxContainers.Text = "Number of Containers";
             // 
-            // numericUpDownCooled
+            // numericUpDownNormal
             // 
-            this.numericUpDownCooled.Location = new System.Drawing.Point(75, 39);
-            this.numericUpDownCooled.Name = "numericUpDownCooled";
-            this.numericUpDownCooled.Size = new System.Drawing.Size(65, 22);
-            this.numericUpDownCooled.TabIndex = 0;
-            // 
-            // labelcooled
-            // 
-            this.labelcooled.AutoSize = true;
-            this.labelcooled.Location = new System.Drawing.Point(6, 41);
-            this.labelcooled.Name = "labelcooled";
-            this.labelcooled.Size = new System.Drawing.Size(52, 17);
-            this.labelcooled.TabIndex = 1;
-            this.labelcooled.Text = "Cooled";
-            // 
-            // labelvaluable
-            // 
-            this.labelvaluable.AutoSize = true;
-            this.labelvaluable.Location = new System.Drawing.Point(6, 67);
-            this.labelvaluable.Name = "labelvaluable";
-            this.labelvaluable.Size = new System.Drawing.Size(63, 17);
-            this.labelvaluable.TabIndex = 2;
-            this.labelvaluable.Text = "Valuable";
-            // 
-            // numericUpDownValuable
-            // 
-            this.numericUpDownValuable.Location = new System.Drawing.Point(75, 65);
-            this.numericUpDownValuable.Name = "numericUpDownValuable";
-            this.numericUpDownValuable.Size = new System.Drawing.Size(65, 22);
-            this.numericUpDownValuable.TabIndex = 3;
+            this.numericUpDownNormal.Location = new System.Drawing.Point(75, 93);
+            this.numericUpDownNormal.Name = "numericUpDownNormal";
+            this.numericUpDownNormal.Size = new System.Drawing.Size(65, 22);
+            this.numericUpDownNormal.TabIndex = 5;
             // 
             // labelnormal
             // 
@@ -113,12 +88,37 @@
             this.labelnormal.TabIndex = 4;
             this.labelnormal.Text = "Normal";
             // 
-            // numericUpDownNormal
+            // numericUpDownValuable
             // 
-            this.numericUpDownNormal.Location = new System.Drawing.Point(75, 93);
-            this.numericUpDownNormal.Name = "numericUpDownNormal";
-            this.numericUpDownNormal.Size = new System.Drawing.Size(65, 22);
-            this.numericUpDownNormal.TabIndex = 5;
+            this.numericUpDownValuable.Location = new System.Drawing.Point(75, 65);
+            this.numericUpDownValuable.Name = "numericUpDownValuable";
+            this.numericUpDownValuable.Size = new System.Drawing.Size(65, 22);
+            this.numericUpDownValuable.TabIndex = 3;
+            // 
+            // labelvaluable
+            // 
+            this.labelvaluable.AutoSize = true;
+            this.labelvaluable.Location = new System.Drawing.Point(6, 67);
+            this.labelvaluable.Name = "labelvaluable";
+            this.labelvaluable.Size = new System.Drawing.Size(63, 17);
+            this.labelvaluable.TabIndex = 2;
+            this.labelvaluable.Text = "Valuable";
+            // 
+            // labelcooled
+            // 
+            this.labelcooled.AutoSize = true;
+            this.labelcooled.Location = new System.Drawing.Point(6, 41);
+            this.labelcooled.Name = "labelcooled";
+            this.labelcooled.Size = new System.Drawing.Size(52, 17);
+            this.labelcooled.TabIndex = 1;
+            this.labelcooled.Text = "Cooled";
+            // 
+            // numericUpDownCooled
+            // 
+            this.numericUpDownCooled.Location = new System.Drawing.Point(75, 39);
+            this.numericUpDownCooled.Name = "numericUpDownCooled";
+            this.numericUpDownCooled.Size = new System.Drawing.Size(65, 22);
+            this.numericUpDownCooled.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -130,15 +130,6 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Ship";
-            // 
-            // labelmax_weight
-            // 
-            this.labelmax_weight.AutoSize = true;
-            this.labelmax_weight.Location = new System.Drawing.Point(9, 42);
-            this.labelmax_weight.Name = "labelmax_weight";
-            this.labelmax_weight.Size = new System.Drawing.Size(77, 17);
-            this.labelmax_weight.TabIndex = 0;
-            this.labelmax_weight.Text = "Max weight";
             // 
             // numericUpDownMax_weight
             // 
@@ -152,6 +143,15 @@
             this.numericUpDownMax_weight.Size = new System.Drawing.Size(104, 22);
             this.numericUpDownMax_weight.TabIndex = 1;
             // 
+            // labelmax_weight
+            // 
+            this.labelmax_weight.AutoSize = true;
+            this.labelmax_weight.Location = new System.Drawing.Point(9, 42);
+            this.labelmax_weight.Name = "labelmax_weight";
+            this.labelmax_weight.Size = new System.Drawing.Size(77, 17);
+            this.labelmax_weight.TabIndex = 0;
+            this.labelmax_weight.Text = "Max weight";
+            // 
             // TransportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -162,11 +162,12 @@
             this.Controls.Add(this.buttonCalculate);
             this.Name = "TransportForm";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.TransportForm_Load);
             this.groupBoxContainers.ResumeLayout(false);
             this.groupBoxContainers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCooled)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValuable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNormal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValuable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCooled)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax_weight)).EndInit();

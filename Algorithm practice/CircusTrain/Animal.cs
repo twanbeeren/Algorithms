@@ -24,24 +24,12 @@ namespace CircusTrain
         {
             return Diet + "," + Magnitude;
         }
-
-        public bool EatsAnAnimal(Wagon wagon)
-        {
-            foreach(Animal animal in wagon.Animals)
-            {
-                if (this.Diet == Diet.carnivore && this.Magnitude >= animal.Magnitude)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
+        
         public bool GetsEatenByCarnivore(Wagon wagon)
         {
             foreach (Animal animal in wagon.Animals)
             {
-                if (animal.Diet == Diet.carnivore && this.Magnitude <= animal.Magnitude)
+                if (animal.Diet == Diet.Carnivore && this.Magnitude <= animal.Magnitude)
                 {
                     return true;
                 }

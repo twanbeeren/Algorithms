@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace ContainerTransport
 {
-    public class Row
+    internal class Row
     {
         List<Stack> RowContainers = new List<Stack>();
         
-        public void fillRow(IEnumerable<Stack> stacks)
+        public void FillRow(IEnumerable<Stack> stacks)
         {
             foreach(Stack stack in stacks)
             {

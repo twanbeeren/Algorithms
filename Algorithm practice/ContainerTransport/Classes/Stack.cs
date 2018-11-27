@@ -6,30 +6,21 @@ using System.Threading.Tasks;
 
 namespace ContainerTransport
 {
-    public class Stack
+    internal class Stack
     {
-        List<Container> StackContainers = new List<Container>();
+        List<Container> containers = new List<Container>();
+        int weight = 0;
         bool placed = false;
 
         public bool Placed { get => placed; set => placed = value; }
+        public int Weight { get => weight; set => weight = value; }
+        public List<Container> Containers { get => containers; set => containers = value; }
+        
 
-        public List<Container> fillStack(IEnumerable<Container> containers)
+        public bool CheckWeight(Container container)
         {
-            foreach(Container container in containers)
-            {
-                if (checkWeight(container) && checkValuableContainer() && container.Placed)
-                {
-                    StackContainers.Add(container);
-                }
-            }
-            return StackContainers;
-        }
-
-        public bool checkWeight(Container container)
-        {
-            int stackweight = StackContainers.Sum(x => x.CargoWeight);
-
-            if(stackweight + container.CargoWeight < container.LoadCapacity)
+            
+            if(weight + container.Weight < container.LoadCapacity)
             {
                 return true;
             }
@@ -39,9 +30,9 @@ namespace ContainerTransport
             }
         }
 
-        public bool checkValuableContainer()
+        public bool CheckValuableContainer()
         {
-            var item = StackContainers[StackContainers.Count - 1];
+            var item = Containers[Containers.Count - 1];
             if(item.Sort != ContainerType.Valuable)
             {
                 return true;

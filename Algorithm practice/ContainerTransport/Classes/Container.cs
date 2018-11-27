@@ -6,37 +6,32 @@ using System.Threading.Tasks;
 
 namespace ContainerTransport
 {
-    public class Container
+    internal class Container
     {
-        int id;
+        int weight;
         int loadCapacity = 120000;
-        int maxWeight = 30000;
+        int maxCargoWeight = 26000;
         int standardWeight = 4000;
-        int cargoWeight;
         ContainerType sort;
         bool placed = false;
         
 
         public Container(ContainerType type)
         {
-            CargoWeight = randomWeight();
+            Weight = standardWeight + RandomWeight();
             sort = type;
         }
 
         public int LoadCapacity { get => loadCapacity; set => loadCapacity = value; }
-        public int CargoWeight { get => cargoWeight; set => cargoWeight = value; }
         public ContainerType Sort { get => sort; set => sort = value; }
         public bool Placed { get => placed; set => placed = value; }
+        public int Weight { get => weight; set => weight = value; }
 
-        public int randomWeight()
+        private int RandomWeight()
         {
             Random rnd = new Random();
-            return rnd.Next(standardWeight, maxWeight);
+            return rnd.Next(standardWeight, maxCargoWeight);
         }
-
-        public override string ToString()
-        {
-            return "Container: " + id;
-        }
+        
     }
 }

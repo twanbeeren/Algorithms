@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContainerTransport
 {
-    public class Layer
+    internal class Layer
     {
         List<Row> LayerRows = new List<Row>();
     }
