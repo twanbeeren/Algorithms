@@ -16,11 +16,26 @@ namespace ContainerTransport
         public int Weight { get => weight; set => weight = value; }
         public List<Container> Containers { get => containers; set => containers = value; }
         
+        public void Fill(Container container)
+        {
+            foreach(Container _container in containers)
+            {
+                _container.LoadWeight += container.Weight;
+            }
+            container.Placed = true;
+            containers.Add(container);
+            weight += container.Weight;
+        }
 
         public bool CheckWeight(Container container)
         {
-            
-            if(weight + container.Weight < container.LoadCapacity)
+            var loadWeight = 0;
+            if (containers.Any())
+            {
+                loadWeight = containers.First().LoadWeight;
+            }
+
+            if(loadWeight + container.Weight < container.LoadCapacity)
             {
                 return true;
             }
@@ -30,10 +45,9 @@ namespace ContainerTransport
             }
         }
 
-        public bool CheckValuableContainer()
+        public bool ContainsValuableContainer()
         {
-            var item = Containers[Containers.Count - 1];
-            if(item.Sort != ContainerType.Valuable)
+            if(containers.Any(c => c.Sort == ContainerType.Valuable))
             {
                 return true;
             }
@@ -43,6 +57,23 @@ namespace ContainerTransport
             }
         }
 
-        
+        public bool RoomForValuableContainer(Container container)
+        {
+            if((weight + (container.StandardWeight + container.MaxCargoWeight)) < container.LoadCapacity )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override string ToString()
+        {
+            return "Aantal Containers: " + Containers.Count + ", Gewicht: " + Weight;
+        }
+
+
     }
 }

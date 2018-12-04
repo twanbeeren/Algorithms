@@ -9,35 +9,96 @@ namespace ContainerTransport
     internal class Service
     {
         public List<Container> totalcontainers = new List<Container>();
-        private List<Stack> stacks = new List<Stack>();
+        public List<Stack> Stacks = new List<Stack>();
 
-        private void AddContainerToStack(Stack stack, Container container)
-        {
-            container.Placed = true;
-            stack.Containers.Add(container);
-            stack.Weight += container.Weight;
-        }
-
+        
         public List<Stack> FillCooledStacks()
         {
             List<Container> CooledContainers = totalcontainers.Where(c => c.Sort == ContainerType.Cooled).ToList();
-
             List<Stack> CooledStacks = new List<Stack>();
             Stack cooledStack = new Stack();
-            foreach(Container container in CooledContainers)
+            CooledStacks.Add(cooledStack);
+
+            bool cont = true;
+            do
             {
-                if (cooledStack.CheckWeight(container))
+                foreach (Stack stack in CooledStacks)
                 {
-                    AddContainerToStack(cooledStack, container);
+                    foreach (Container container in CooledContainers)
+                    {
+                        if (cooledStack.CheckWeight(container) && container.Placed == false)
+                        {
+                            cooledStack.Fill(container);
+                        }
+                    }
                 }
-                else
+                cont = CooledContainers.Any(item => item.Placed == false);
+                if (cont)
                 {
-                    CooledStacks.Add(cooledStack);
                     cooledStack = new Stack();
+                    CooledStacks.Add(cooledStack);
                 }
-            }
-            stacks.AddRange(CooledStacks);
+            } while (cont);
+            Stacks.AddRange(CooledStacks);
             return CooledStacks;
+        }
+
+        public List<Stack> FillNormalStacks()
+        {
+            List<Container> NormalContainers = totalcontainers.Where(c => c.Sort == ContainerType.Normal).ToList();
+            List<Stack> NormalStacks = new List<Stack>();
+            Stack NewStack = new Stack();
+            NormalStacks.Add(NewStack);
+            bool NormalFilled = true;
+            do
+            {
+                foreach(Stack stack in NormalStacks)
+                {
+                    foreach (Container container in NormalContainers)
+                    {
+                        if (stack.CheckWeight(container) && stack.RoomForValuableContainer(container) && container.Placed == false)
+                        {
+                            stack.Fill(container);
+                        }
+                    }
+                }
+                NormalFilled = NormalContainers.Any(item => item.Placed == false);
+                if (NormalFilled)
+                {
+                    NewStack = new Stack();
+                    NormalStacks.Add(NewStack);
+                }
+            } while (NormalFilled);
+                
+            return NormalStacks;
+        }
+        public List<Stack> FillValuableStacks(List<Stack> stacks)
+        {
+            bool ValFilled = true;
+            List<Container> ValContainers = totalcontainers.Where(c => c.Sort == ContainerType.Valuable).ToList();
+            do
+            {
+                foreach (Stack stack in stacks)
+                {
+                    foreach (Container container in ValContainers)
+                    {
+                        if (stack.CheckWeight(container) && !stack.ContainsValuableContainer() && container.Placed == false)
+                        {
+                            stack.Fill(container);
+                        }
+                    }
+                }
+
+                ValFilled = ValContainers.Any(item => item.Placed == false);
+                if (ValFilled)
+                {
+                    Stack NewStack = new Stack();
+                    stacks.Add(NewStack);
+                }
+            } while (ValFilled);
+
+            Stacks.AddRange(stacks);
+            return stacks;
         }
     }
 }

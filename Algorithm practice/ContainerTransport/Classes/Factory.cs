@@ -8,10 +8,15 @@ namespace ContainerTransport.Classes
 {
     internal class Factory
     {
-        Service services = new Service();
-        public void CreateShip(int maxWeight)
+        Service Service;
+        public Factory(Service services)
+        {
+            Service = services;
+        }
+        public Ship CreateShip(int maxWeight)
         {
             Ship ship = new Ship(maxWeight);
+            return ship;
         }
 
         public void AddCooledContainers(int cooledCount)
@@ -20,7 +25,7 @@ namespace ContainerTransport.Classes
             while (counter < cooledCount)
             {
                 Container CooledContainer = new Container(ContainerType.Cooled);
-                services.totalcontainers.Add(CooledContainer);
+                Service.totalcontainers.Add(CooledContainer);
                 counter++;
             }
         }
@@ -31,7 +36,7 @@ namespace ContainerTransport.Classes
             while (counter < normalCount)
             {
                 Container NormalContainer = new Container(ContainerType.Normal);
-                services.totalcontainers.Add(NormalContainer);
+                Service.totalcontainers.Add(NormalContainer);
                 counter++;
             }
         }
@@ -42,7 +47,7 @@ namespace ContainerTransport.Classes
             while (counter < valuableCount)
             {
                 Container ValuableContainer = new Container(ContainerType.Valuable);
-                services.totalcontainers.Add(ValuableContainer);
+                Service.totalcontainers.Add(ValuableContainer);
                 counter++;
             }
         }

@@ -39,6 +39,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.numericUpDownMax_weight = new System.Windows.Forms.NumericUpDown();
             this.labelmax_weight = new System.Windows.Forms.Label();
+            this.flpStacks = new System.Windows.Forms.FlowLayoutPanel();
             this.groupBoxContainers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNormal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValuable)).BeginInit();
@@ -78,6 +79,11 @@
             this.numericUpDownNormal.Name = "numericUpDownNormal";
             this.numericUpDownNormal.Size = new System.Drawing.Size(65, 22);
             this.numericUpDownNormal.TabIndex = 5;
+            this.numericUpDownNormal.Value = new decimal(new int[] {
+            15,
+            0,
+            0,
+            0});
             // 
             // labelnormal
             // 
@@ -94,6 +100,11 @@
             this.numericUpDownValuable.Name = "numericUpDownValuable";
             this.numericUpDownValuable.Size = new System.Drawing.Size(65, 22);
             this.numericUpDownValuable.TabIndex = 3;
+            this.numericUpDownValuable.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // labelvaluable
             // 
@@ -119,6 +130,11 @@
             this.numericUpDownCooled.Name = "numericUpDownCooled";
             this.numericUpDownCooled.Size = new System.Drawing.Size(65, 22);
             this.numericUpDownCooled.TabIndex = 0;
+            this.numericUpDownCooled.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
             // 
             // groupBox1
             // 
@@ -152,11 +168,19 @@
             this.labelmax_weight.TabIndex = 0;
             this.labelmax_weight.Text = "Max weight";
             // 
+            // flpStacks
+            // 
+            this.flpStacks.Location = new System.Drawing.Point(246, 22);
+            this.flpStacks.Name = "flpStacks";
+            this.flpStacks.Size = new System.Drawing.Size(758, 569);
+            this.flpStacks.TabIndex = 3;
+            // 
             // TransportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1042, 624);
+            this.Controls.Add(this.flpStacks);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxContainers);
             this.Controls.Add(this.buttonCalculate);
@@ -188,6 +212,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.NumericUpDown numericUpDownMax_weight;
         private System.Windows.Forms.Label labelmax_weight;
+        private System.Windows.Forms.FlowLayoutPanel flpStacks;
     }
 }
 
