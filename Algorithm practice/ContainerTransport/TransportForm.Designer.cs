@@ -40,19 +40,27 @@
             this.numericUpDownMax_weight = new System.Windows.Forms.NumericUpDown();
             this.labelmax_weight = new System.Windows.Forms.Label();
             this.flpStacks = new System.Windows.Forms.FlowLayoutPanel();
+            this.labelWeightLeft = new System.Windows.Forms.Label();
+            this.labelWeightRight = new System.Windows.Forms.Label();
+            this.groupBoxShipResults = new System.Windows.Forms.GroupBox();
+            this.labelDifference = new System.Windows.Forms.Label();
+            this.textBoxWeightRight = new System.Windows.Forms.TextBox();
+            this.textBoxWeightLeft = new System.Windows.Forms.TextBox();
+            this.buttonClear = new System.Windows.Forms.Button();
             this.groupBoxContainers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNormal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValuable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCooled)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax_weight)).BeginInit();
+            this.groupBoxShipResults.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonCalculate
             // 
             this.buttonCalculate.Location = new System.Drawing.Point(13, 269);
             this.buttonCalculate.Name = "buttonCalculate";
-            this.buttonCalculate.Size = new System.Drawing.Size(202, 64);
+            this.buttonCalculate.Size = new System.Drawing.Size(96, 64);
             this.buttonCalculate.TabIndex = 0;
             this.buttonCalculate.Text = "Calculate";
             this.buttonCalculate.UseVisualStyleBackColor = true;
@@ -80,7 +88,7 @@
             this.numericUpDownNormal.Size = new System.Drawing.Size(65, 22);
             this.numericUpDownNormal.TabIndex = 5;
             this.numericUpDownNormal.Value = new decimal(new int[] {
-            15,
+            25,
             0,
             0,
             0});
@@ -101,7 +109,7 @@
             this.numericUpDownValuable.Size = new System.Drawing.Size(65, 22);
             this.numericUpDownValuable.TabIndex = 3;
             this.numericUpDownValuable.Value = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -131,7 +139,7 @@
             this.numericUpDownCooled.Size = new System.Drawing.Size(65, 22);
             this.numericUpDownCooled.TabIndex = 0;
             this.numericUpDownCooled.Value = new decimal(new int[] {
-            10,
+            15,
             0,
             0,
             0});
@@ -170,21 +178,90 @@
             // 
             // flpStacks
             // 
+            this.flpStacks.AutoScroll = true;
             this.flpStacks.Location = new System.Drawing.Point(246, 22);
             this.flpStacks.Name = "flpStacks";
             this.flpStacks.Size = new System.Drawing.Size(758, 569);
             this.flpStacks.TabIndex = 3;
+            // 
+            // labelWeightLeft
+            // 
+            this.labelWeightLeft.AutoSize = true;
+            this.labelWeightLeft.Location = new System.Drawing.Point(9, 33);
+            this.labelWeightLeft.Name = "labelWeightLeft";
+            this.labelWeightLeft.Size = new System.Drawing.Size(40, 17);
+            this.labelWeightLeft.TabIndex = 4;
+            this.labelWeightLeft.Text = "Left: ";
+            // 
+            // labelWeightRight
+            // 
+            this.labelWeightRight.AutoSize = true;
+            this.labelWeightRight.Location = new System.Drawing.Point(9, 64);
+            this.labelWeightRight.Name = "labelWeightRight";
+            this.labelWeightRight.Size = new System.Drawing.Size(49, 17);
+            this.labelWeightRight.TabIndex = 5;
+            this.labelWeightRight.Text = "Right: ";
+            // 
+            // groupBoxShipResults
+            // 
+            this.groupBoxShipResults.Controls.Add(this.labelDifference);
+            this.groupBoxShipResults.Controls.Add(this.textBoxWeightRight);
+            this.groupBoxShipResults.Controls.Add(this.textBoxWeightLeft);
+            this.groupBoxShipResults.Controls.Add(this.labelWeightRight);
+            this.groupBoxShipResults.Controls.Add(this.labelWeightLeft);
+            this.groupBoxShipResults.Location = new System.Drawing.Point(13, 367);
+            this.groupBoxShipResults.Name = "groupBoxShipResults";
+            this.groupBoxShipResults.Size = new System.Drawing.Size(202, 151);
+            this.groupBoxShipResults.TabIndex = 6;
+            this.groupBoxShipResults.TabStop = false;
+            this.groupBoxShipResults.Text = "ShipResults";
+            // 
+            // labelDifference
+            // 
+            this.labelDifference.AutoSize = true;
+            this.labelDifference.Location = new System.Drawing.Point(33, 106);
+            this.labelDifference.Name = "labelDifference";
+            this.labelDifference.Size = new System.Drawing.Size(81, 17);
+            this.labelDifference.TabIndex = 8;
+            this.labelDifference.Text = "Difference: ";
+            // 
+            // textBoxWeightRight
+            // 
+            this.textBoxWeightRight.Location = new System.Drawing.Point(64, 61);
+            this.textBoxWeightRight.Name = "textBoxWeightRight";
+            this.textBoxWeightRight.Size = new System.Drawing.Size(92, 22);
+            this.textBoxWeightRight.TabIndex = 7;
+            // 
+            // textBoxWeightLeft
+            // 
+            this.textBoxWeightLeft.Location = new System.Drawing.Point(64, 30);
+            this.textBoxWeightLeft.Name = "textBoxWeightLeft";
+            this.textBoxWeightLeft.Size = new System.Drawing.Size(92, 22);
+            this.textBoxWeightLeft.TabIndex = 6;
+            // 
+            // buttonClear
+            // 
+            this.buttonClear.Location = new System.Drawing.Point(116, 269);
+            this.buttonClear.Name = "buttonClear";
+            this.buttonClear.Size = new System.Drawing.Size(99, 64);
+            this.buttonClear.TabIndex = 7;
+            this.buttonClear.Text = "Clear";
+            this.buttonClear.UseVisualStyleBackColor = true;
+            this.buttonClear.Click += new System.EventHandler(this.buttonClear_Click);
             // 
             // TransportForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1042, 624);
+            this.Controls.Add(this.buttonClear);
+            this.Controls.Add(this.groupBoxShipResults);
             this.Controls.Add(this.flpStacks);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxContainers);
             this.Controls.Add(this.buttonCalculate);
             this.Name = "TransportForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.TransportForm_Load);
             this.groupBoxContainers.ResumeLayout(false);
@@ -195,6 +272,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMax_weight)).EndInit();
+            this.groupBoxShipResults.ResumeLayout(false);
+            this.groupBoxShipResults.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -213,6 +292,13 @@
         private System.Windows.Forms.NumericUpDown numericUpDownMax_weight;
         private System.Windows.Forms.Label labelmax_weight;
         private System.Windows.Forms.FlowLayoutPanel flpStacks;
+        private System.Windows.Forms.Label labelWeightLeft;
+        private System.Windows.Forms.Label labelWeightRight;
+        private System.Windows.Forms.GroupBox groupBoxShipResults;
+        private System.Windows.Forms.TextBox textBoxWeightRight;
+        private System.Windows.Forms.TextBox textBoxWeightLeft;
+        private System.Windows.Forms.Label labelDifference;
+        private System.Windows.Forms.Button buttonClear;
     }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ContainerTransport
 {
-    public enum ContainerType
+    public enum Type
     {
         Normal,
         Valuable,

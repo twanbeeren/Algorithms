@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ContainerTransport.Classes
+namespace ContainerTransport
 {
-    internal class Factory
+    public class Factory
     {
-        Service Service;
-        public Factory(Service services)
-        {
-            Service = services;
-        }
+        public List<Container> containers = new List<Container>();
+        
         public Ship CreateShip(int maxWeight)
         {
             Ship ship = new Ship(maxWeight);
@@ -24,8 +21,8 @@ namespace ContainerTransport.Classes
             int counter = 0;
             while (counter < cooledCount)
             {
-                Container CooledContainer = new Container(ContainerType.Cooled);
-                Service.totalcontainers.Add(CooledContainer);
+                Container CooledContainer = new Container(Type.Cooled);
+                containers.Add(CooledContainer);
                 counter++;
             }
         }
@@ -35,8 +32,8 @@ namespace ContainerTransport.Classes
             int counter = 0;
             while (counter < normalCount)
             {
-                Container NormalContainer = new Container(ContainerType.Normal);
-                Service.totalcontainers.Add(NormalContainer);
+                Container NormalContainer = new Container(Type.Normal);
+                containers.Add(NormalContainer);
                 counter++;
             }
         }
@@ -46,10 +43,15 @@ namespace ContainerTransport.Classes
             int counter = 0;
             while (counter < valuableCount)
             {
-                Container ValuableContainer = new Container(ContainerType.Valuable);
-                Service.totalcontainers.Add(ValuableContainer);
+                Container ValuableContainer = new Container(Type.Valuable);
+                containers.Add(ValuableContainer);
                 counter++;
             }
+        }
+
+        public List<Container> OrderContainers()
+        {
+            return containers.OrderBy(c => c.Weight).ToList();
         }
     }
 }

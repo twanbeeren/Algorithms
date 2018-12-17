@@ -6,15 +6,18 @@ using System.Threading.Tasks;
 
 namespace ContainerTransport
 {
-    internal class Service
+    public class StackService
     {
-        public List<Container> totalcontainers = new List<Container>();
+        public List<Container> totalcontainers;
         public List<Stack> Stacks = new List<Stack>();
 
-        
+        public StackService(List<Container> containers)
+        {
+            this.totalcontainers = containers;
+        }
         public List<Stack> FillCooledStacks()
         {
-            List<Container> CooledContainers = totalcontainers.Where(c => c.Sort == ContainerType.Cooled).ToList();
+            List<Container> CooledContainers = totalcontainers.Where(c => c.Sort == Type.Cooled).ToList();
             List<Stack> CooledStacks = new List<Stack>();
             Stack cooledStack = new Stack();
             CooledStacks.Add(cooledStack);
@@ -45,14 +48,14 @@ namespace ContainerTransport
 
         public List<Stack> FillNormalStacks()
         {
-            List<Container> NormalContainers = totalcontainers.Where(c => c.Sort == ContainerType.Normal).ToList();
+            List<Container> NormalContainers = totalcontainers.Where(c => c.Sort == Type.Normal).ToList();
             List<Stack> NormalStacks = new List<Stack>();
             Stack NewStack = new Stack();
             NormalStacks.Add(NewStack);
             bool NormalFilled = true;
             do
             {
-                foreach(Stack stack in NormalStacks)
+                foreach (Stack stack in NormalStacks)
                 {
                     foreach (Container container in NormalContainers)
                     {
@@ -69,13 +72,13 @@ namespace ContainerTransport
                     NormalStacks.Add(NewStack);
                 }
             } while (NormalFilled);
-                
+
             return NormalStacks;
         }
         public List<Stack> FillValuableStacks(List<Stack> stacks)
         {
             bool ValFilled = true;
-            List<Container> ValContainers = totalcontainers.Where(c => c.Sort == ContainerType.Valuable).ToList();
+            List<Container> ValContainers = totalcontainers.Where(c => c.Sort == Type.Valuable).ToList();
             do
             {
                 foreach (Stack stack in stacks)

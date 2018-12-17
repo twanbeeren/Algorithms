@@ -8,10 +8,10 @@ namespace ContainerTransport
 {
     public class Ship
     {
-        int min_weight;
-        public Ship(int max_weight)
+        public int MinWeight { get; private set; }
+        public Ship(int maxWeight)
         {
-            min_weight = max_weight / 2;
+            MinWeight = maxWeight / 2;
         }
     }
 }

@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace ContainerTransport
 {
-    internal class Layer
+    public enum Place
     {
-        List<Row> LayerRows = new List<Row>();
+        UnAssigned,
+        Left,
+        Middle,
+        Right
     }
 }
