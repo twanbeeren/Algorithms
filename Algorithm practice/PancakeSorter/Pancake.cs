@@ -8,19 +8,16 @@ namespace PancakeSorter
 {
     public class Pancake
     {
-        private int size;
-
+        public int Size { get; private set; }
         public Pancake()
         {
-            size = RandomSize();
+            Size = RandomSize();
         }
-
-        public int Size { get => size;}
-
+        
         private int RandomSize()
         {
             Random random = new Random();
-            return random.Next(11);
+            return random.Next(1, 11);
         }
 
         public override string ToString()
