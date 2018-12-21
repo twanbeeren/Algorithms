@@ -262,8 +262,7 @@
             this.Controls.Add(this.buttonCalculate);
             this.Name = "TransportForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
-            this.Load += new System.EventHandler(this.TransportForm_Load);
+            this.Text = "TransportForm";
             this.groupBoxContainers.ResumeLayout(false);
             this.groupBoxContainers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNormal)).EndInit();

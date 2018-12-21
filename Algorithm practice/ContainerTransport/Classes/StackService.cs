@@ -6,18 +6,19 @@ using System.Threading.Tasks;
 
 namespace ContainerTransport
 {
-    public class StackService
+    internal static class StackService
     {
-        public List<Container> totalcontainers;
-        public List<Stack> Stacks = new List<Stack>();
-
-        public StackService(List<Container> containers)
+       
+        internal static List<Stack> FillStacks(List<Container> containers)
         {
-            this.totalcontainers = containers;
+            List<Stack> stacks = new List<Stack>();
+            stacks.AddRange(FillCooledStacks(stacks, containers));
+            stacks.AddRange(FillValuableStacks(FillNormalStacks(containers), stacks, containers));
+            return stacks;
         }
-        public List<Stack> FillCooledStacks()
+        private static List<Stack> FillCooledStacks(List<Stack> stacks, List<Container> containers)
         {
-            List<Container> CooledContainers = totalcontainers.Where(c => c.Sort == Type.Cooled).ToList();
+            List<Container> CooledContainers = containers.Where(c => c.Sort == Type.Cooled).ToList();
             List<Stack> CooledStacks = new List<Stack>();
             Stack cooledStack = new Stack();
             CooledStacks.Add(cooledStack);
@@ -42,13 +43,13 @@ namespace ContainerTransport
                     CooledStacks.Add(cooledStack);
                 }
             } while (cont);
-            Stacks.AddRange(CooledStacks);
+            stacks.AddRange(CooledStacks);
             return CooledStacks;
         }
 
-        public List<Stack> FillNormalStacks()
+        private static List<Stack> FillNormalStacks(List<Container> containers)
         {
-            List<Container> NormalContainers = totalcontainers.Where(c => c.Sort == Type.Normal).ToList();
+            List<Container> NormalContainers = containers.Where(c => c.Sort == Type.Normal).ToList();
             List<Stack> NormalStacks = new List<Stack>();
             Stack NewStack = new Stack();
             NormalStacks.Add(NewStack);
@@ -75,13 +76,13 @@ namespace ContainerTransport
 
             return NormalStacks;
         }
-        public List<Stack> FillValuableStacks(List<Stack> stacks)
+        private static List<Stack> FillValuableStacks(List<Stack> normalStacks, List<Stack> stacks, List<Container> containers)
         {
             bool ValFilled = true;
-            List<Container> ValContainers = totalcontainers.Where(c => c.Sort == Type.Valuable).ToList();
+            List<Container> ValContainers = containers.Where(c => c.Sort == Type.Valuable).ToList();
             do
             {
-                foreach (Stack stack in stacks)
+                foreach (Stack stack in normalStacks)
                 {
                     foreach (Container container in ValContainers)
                     {
@@ -100,8 +101,10 @@ namespace ContainerTransport
                 }
             } while (ValFilled);
 
-            Stacks.AddRange(stacks);
+            stacks.AddRange(stacks);
             return stacks;
         }
+
+        
     }
 }

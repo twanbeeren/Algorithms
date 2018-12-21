@@ -13,8 +13,9 @@ namespace CircusTrain
 {
     public partial class TrainForm : Form
     {
+        List<Animal> animals = new List<Animal>();
         Train train;
-        Services services;
+        
         
         public TrainForm()
         {
@@ -24,7 +25,6 @@ namespace CircusTrain
         private void TrainForm_Load(object sender, EventArgs e)
         {
             train = new Train();
-            services = new Services();
         }
 
         private void buttonAddAnimal_Click(object sender, EventArgs e)
@@ -35,11 +35,11 @@ namespace CircusTrain
                 Magnitude magnitude = (Magnitude)Enum.Parse(typeof(Magnitude), comboBoxSize.Text);
 
                 Animal animal = AnimalFactory.MakeAnimal(diet, magnitude);
-                services.Animals.Add(animal);
-                services.Animals.OrderBy(x => x.Magnitude == Magnitude.Large);
+                animals.Add(animal);
+                animals.OrderBy(x => x.Magnitude == Magnitude.Large);
 
                 listBoxAnimals.Items.Clear();
-                foreach (Animal _animal in services.Animals)
+                foreach (Animal _animal in animals)
                 {
                     listBoxAnimals.Items.Add(_animal);
                 }
@@ -48,9 +48,9 @@ namespace CircusTrain
 
         private void buttonRandomize_Click(object sender, EventArgs e)
         {
-            services.Animals = AnimalFactory.MakeRandomAnimals();
+            animals = AnimalFactory.MakeRandomAnimals();
             listBoxAnimals.Items.Clear();
-            foreach (Animal animal in services.Animals)
+            foreach (Animal animal in animals)
             {
                 listBoxAnimals.Items.Add(animal);
             }
@@ -58,7 +58,7 @@ namespace CircusTrain
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            services.Animals.Clear();
+            animals.Clear();
             train.Wagons.Clear();
             listBoxAnimals.Items.Clear();
             flpWagons.Controls.Clear();
@@ -79,8 +79,7 @@ namespace CircusTrain
 
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
-            services.Animals = services.Animals.OrderByDescending(a => (int)a.Magnitude).ToList();
-            services.FillTrain(train);
+            Services.FillTrain(train, animals);
 
             foreach(Wagon _wagon in train.Wagons)
             {

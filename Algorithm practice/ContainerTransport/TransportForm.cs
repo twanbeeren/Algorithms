@@ -12,43 +12,39 @@ namespace ContainerTransport
 {
     public partial class TransportForm : Form
     {
-        Factory factory;
+        List<Container> containers = new List<Container>();
+        List<Stack> stacks = new List<Stack>();
+        List<Row> rows = new List<Row>();
         public TransportForm()
         {
             InitializeComponent();
         }
-        private void TransportForm_Load(object sender, EventArgs e)
-        {
-            factory = new Factory();
-        }
-
+        
         private void buttonCalculate_Click(object sender, EventArgs e)
         {
-            Ship ship = factory.CreateShip((int)numericUpDownMax_weight.Value);
-            factory.AddCooledContainers((int)numericUpDownCooled.Value);
-            factory.AddNormalContainers((int)numericUpDownNormal.Value);
-            factory.AddValuableContainers((int)numericUpDownValuable.Value);
-            factory.OrderContainers();
+            int shipWeight = (int)numericUpDownMax_weight.Value;
+            int cooledCount = (int)numericUpDownCooled.Value;
+            int normalCount = (int)numericUpDownNormal.Value;
+            int valuableCount = (int)numericUpDownValuable.Value;
+
+
+            Ship ship = Factory.CreateShip(shipWeight);
+            containers = Factory.CreateContainers(cooledCount, normalCount, valuableCount);
 
             CheckWeight(ship);
 
+            stacks = StackService.FillStacks(containers);
 
-            StackService stackService = new StackService(factory.containers);
-
-            stackService.FillCooledStacks();
-            List<Stack> stacks = stackService.FillNormalStacks();
-            stackService.FillValuableStacks(stacks);
-
-            foreach(Stack stack in stackService.Stacks)
+            foreach(Stack stack in stacks)
             {
                 CreateStacks(stack);
             }
-
-            RowService rowService = new RowService(stackService.Stacks);
+            
+            RowService rowService = new RowService(stacks);
             rowService.DetermineRows();
             rowService.FillRows();
 
-            Placer placer = new Placer(rowService.Rows);
+            Placer placer = new Placer(rows);
             placer.PlaceRows();
 
             textBoxWeightLeft.Text = Convert.ToString(placer.WeightLeft);
@@ -81,7 +77,7 @@ namespace ContainerTransport
 
         private void buttonClear_Click(object sender, EventArgs e)
         {
-            factory.containers.Clear();
+            containers.Clear();
 
             //List<Control> listControls = flpStacks.Controls.ToList();
             //foreach (Control cntrl in listControls)
@@ -92,7 +88,7 @@ namespace ContainerTransport
 
         private void CheckWeight(Ship ship)
         {
-            if (factory.containers.Sum(c => c.Weight) < ship.MinWeight)
+            if (containers.Sum(c => c.Weight) < ship.MinWeight)
             {
                 MessageBox.Show("Het schip is te licht");
             }

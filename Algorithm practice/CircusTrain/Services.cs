@@ -7,15 +7,22 @@ using System.Threading.Tasks;
 
 namespace CircusTrain
 {
-    internal class Services
+    static class Services
     {
-        public List<Animal> Animals = new List<Animal>();
-        
-        public List<Wagon> PlaceLargeCarnivores()
+        public static Train FillTrain(Train train, List<Animal> animals)
+        {
+            animals = animals.OrderByDescending(a => (int)a.Magnitude).ToList();
+
+            train.Wagons.AddRange(PlaceLargeCarnivores(animals));
+            List<Wagon> carnivoreWagons = PlaceCarnivores(animals);
+            train.Wagons.AddRange(PlaceHerbivores(carnivoreWagons, animals));
+            return train;
+        }
+        private static List<Wagon> PlaceLargeCarnivores(List<Animal> animals)
         {
             List<Wagon> wagons = new List<Wagon>();
             Wagon wagon;
-            foreach(Animal animal in Animals)
+            foreach(Animal animal in animals)
             {
                 if( animal.Diet == Diet.Carnivore && animal.Magnitude == Magnitude.Large)
                 {
@@ -27,11 +34,11 @@ namespace CircusTrain
             return wagons;
         }
 
-        public List<Wagon> PlaceCarnivores()
+        private static List<Wagon> PlaceCarnivores(List<Animal> animals)
         {
             List<Wagon> wagons = new List<Wagon>();
             Wagon wagon;
-            foreach (Animal animal in Animals)
+            foreach (Animal animal in animals)
             {
                 if (animal.Placed == false && animal.Diet == Diet.Carnivore)
                 {
@@ -43,13 +50,13 @@ namespace CircusTrain
             return wagons;
         }
 
-        public List<Wagon> PlaceHerbivores(List<Wagon> wagons)
+        private static List<Wagon> PlaceHerbivores(List<Wagon> wagons, List<Animal> animals)
         {
             bool cont = true;
             do {
                 foreach (Wagon wagon in wagons)
                 {
-                    foreach (Animal animal in Animals)
+                    foreach (Animal animal in animals)
                     {
                         if (animal.Placed == false && wagon.Points < wagon.MaxPoints)
                         {
@@ -61,7 +68,7 @@ namespace CircusTrain
                     }
                 }
 
-                cont = Animals.Any(item => item.Placed == false);
+                cont = animals.Any(item => item.Placed == false);
                 if (cont)
                 {
                     Wagon newwagon = new Wagon();
@@ -72,13 +79,6 @@ namespace CircusTrain
             return wagons;
         }
         
-        public Train FillTrain(Train train)
-        {
-            train.Wagons.AddRange(PlaceLargeCarnivores());
-            List<Wagon> carnivoreWagons = PlaceCarnivores();
-
-            train.Wagons.AddRange(PlaceHerbivores(carnivoreWagons));
-            return train;
-        }
+        
     }
 }
