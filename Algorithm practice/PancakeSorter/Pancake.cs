@@ -22,7 +22,7 @@ namespace PancakeSorter
 
         public override string ToString()
         {
-            return "Size: " + size;
+            return "Size: " + Size;
         }
     }
 }

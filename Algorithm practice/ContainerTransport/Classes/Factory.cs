@@ -8,7 +8,6 @@ namespace ContainerTransport
 {
     public static class Factory
     {
-        
         public static Ship CreateShip(int maxWeight)
         {
             Ship ship = new Ship(maxWeight);
